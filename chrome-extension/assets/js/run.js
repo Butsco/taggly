@@ -1,4 +1,4 @@
-var taggly = {
+window.taggly = {
 	open: false,
 	container: undefined,
 	body: undefined,
@@ -57,12 +57,6 @@ var taggly = {
     	taggly.open = true;
     	$('body').animate({'margin-right':"300px"});
     	taggly.container.animate({'width':"300px"}).addClass('open');
-
-    	// Get Video HTML5 Player
-    	var video = $('video').get(0);
-    	console.log(video);
-    	//video.pause()
-  		//console.log(video.currentTime);
     },
 
     /*
@@ -77,12 +71,20 @@ var taggly = {
     	taggly.open = false;
     	$('body').animate({'margin-right':"0"});
     	taggly.container.animate({'width':"50px"}).removeClass('open');
-    }
+    },
 
+    /*
+     * Pause video
+     */
+    pauseVideo: function(){
+    	console.log("[Taggly] taggly.pauseVideo();");
+    	var video = $('video').get(0);
+    	return video.pause();
+    }
 } 
 
 
-
+console.log("loaded");
 $(function(){
 	console.log("[Taggly] I'm loaded on this page");
 	taggly.init();
