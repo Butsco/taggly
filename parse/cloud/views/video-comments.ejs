@@ -1,6 +1,11 @@
 <style>
 	body{
 		margin:0;
+	}
+	
+	.tg{
+		font-size: 16px;
+		margin:0;
 		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 	}
 	
@@ -26,7 +31,7 @@
 		position: absolute;
 		top: 46px;
 		right: 0;
-		bottom: 0;
+		bottom: 38px;
 		left: 0;
 		overflow: scroll;
 	}
@@ -115,6 +120,61 @@
 		color: #67BCC4;
 	}
 	
+	.tg-empty-state{
+		text-align: center;
+		padding: 40px 15px;
+		display: block;
+		color: #999;
+	}
+	
+	.tg-add-comment{
+		position: absolute;
+		z-index: 99;
+		max-width: 400px;
+		bottom:0;
+		right:0;
+		left:0;
+		border-top:1px solid #ddd;
+	}
+	
+	.tg-add-comment .text input{
+		box-sizing: border-box;
+		width: 100%;
+		-webkit-appearance: none;
+		border:none;
+		padding: 10px;
+		font-size: 16px;
+		outline: 0;
+	}
+	
+	.tg-add-comment .text{
+		width: 85%;
+	}
+	
+	.tg-add-comment .input{
+		float:left;
+	}
+	
+	.tg-add-comment .submit{
+		width: 15%;
+	}
+	
+	.tg-add-comment .submit input{
+		background:#67BCC4;
+		border: none;
+		-webkit-appearance: none;
+		padding: 10px;
+		font-size: 16px;
+		color: #fff;
+		width: 100%;
+		text-align: center;
+		outline: 0;
+	}
+	
+	.tg-add-comment .submit input:hover{
+		background:#67BCC4;
+	}
+	
 	/* Clearfix */
 	.cf:before,
 	.cf:after {
@@ -127,34 +187,103 @@
 	}
 </style>
 
-<header class="tg-navigation-bar">Taggly</header>
-
-<div class="tg-comments">
+<div class="tg">
+	<header class="tg-navigation-bar">Taggly</header>
 	
-	<% for(var i=0; i<comments.length; i++) { %>
-	
-	<div class="tg-comment<% if(comments[i].isReply){ %> reply<% } %>">
-		<header class="cf">
-			<img src="<%= comments[i].author.picture %>" alt="<%= comments[i].author.username %>" width="20"/>
-			<span class="meta-left"><%= comments[i].author.username %> – 15 minutes ago</span>
-		</header>
+	<div class="tg-comments">
 		
-		<p><%= comments[i].description %></p>
-		
-		<% if(comments[i].productUrl){ %>
-		<a href="<%= comments[i].productUrl %>" target="_blank" class="tg-product cf">
-			<img src="http://ecx.images-amazon.com/images/I/51GBh3qOJDL._SL1004_.jpg" width="50"/>
-			<div class="body">
-				<h1>Clone Trooper Captain Rex Star WarsTM costume for boy - Age 8-10 Years - Large<h1>
-			</div>
-		</a>
+		<% if(!comments.length) { %>
+			<span class="tg-empty-state">No questions, asked.</span>
 		<% } %>
 		
-		<footer>
-			<% if(comments[i].isReply){ %><a href="">5 Upvotes</a><% } %>
-			<% if(!comments[i].isReply){ %><a href="">Reply</a><% } %>
-		</footer>
+		<% for(var i=0; i<comments.length; i++) { %>
+		
+		<div class="tg-comment<% if(comments[i].isReply){ %> reply<% } %>">
+			<header class="cf">
+				<img src="<%= comments[i].author.picture %>" alt="<%= comments[i].author.username %>" width="20"/>
+				<span class="meta-left"><%= comments[i].author.username %> – <a href="" onclick="document.getElementsByTagName('video')[0].currentTime = <%= comments[i].timestamp %>; document.getElementsByTagName('video')[0].pause; return false;">Go to frame</a></span>
+			</header>
+			
+			<p><%= comments[i].description %></p>
+			
+			<% if(comments[i].productUrl){ %>
+			<a href="<%= comments[i].productUrl %>" target="_blank" class="tg-product cf">
+				<img src="http://ecx.images-amazon.com/images/I/51GBh3qOJDL._SL1004_.jpg" width="50"/>
+				<div class="body">
+					<h1>Clone Trooper Captain Rex Star WarsTM costume for boy - Age 8-10 Years - Large<h1>
+				</div>
+			</a>
+			<% } %>
+			
+			<footer>
+				<% if(comments[i].isReply){ %><a href="">5 Upvotes</a><% } %>
+				<% if(!comments[i].isReply){ %><a href="">Reply</a><% } %>
+			</footer>
+		</div>
+		<% } %>
+		
 	</div>
-	<% } %>
+	
+	<form class="tg-add-comment cf">
+		<div class="input text">
+			<input type="text" placeholder="Ask something about this frame …"/>
+		</div>
+		<div class="input submit">
+			<input type="submit" value="Add">
+		</div>
+	</form>
 	
 </div>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+	$(function(){
+		
+		$('.tg-add-comment .submit input').on('click', function(){
+			var commentText = $('.tg-add-comment .text input').val();
+			var user = '5gD3luXcQ9';
+			var videoUrl = '<%= videoUrl %>';
+			var timestamp = 0;
+			if(document.getElementsByTagName('video')[0].currentTime){
+				timestamp = document.getElementsByTagName('video')[0].currentTime;
+			}
+			
+			var data = {
+				"description": commentText,
+				"timestamp": timestamp,
+				"user": {
+					"__type": "Pointer",
+					"className": "_User",
+					"objectId": user
+				},
+				"videoUrl": videoUrl
+			};
+			
+			$.ajax({
+				type: 'POST',
+				contentType: "application/json",
+				processData: false,
+				headers: {
+					'X-Parse-Application-Id': 'g3jgAbiA6HIErsD4unBLq6A7m6L59cKQG0JnF7RT',
+					"X-Parse-REST-API-Key": 'l8lEgVotrdKovCLdakIVOjopvdsHyC0lShtnvjhV'
+				},
+				url: 'https://api.parse.com/1/classes/Comment',
+				data: JSON.stringify(data),
+				success: function(response){
+					var date = new Date();
+					$.get("https://taggly.parseapp.com/api/video-comments/"+encodeURIComponent(videoUrl)+'?'+date.timeStamp, function(data, status){
+						if(status == 'success'){
+							console.log(data);
+							$('.taggly .body').html(data);
+						} 
+					});
+				},
+				dataType: 'json'
+			});
+			
+			
+			return false;
+		});
+		
+	});
+</script>

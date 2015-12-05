@@ -41,7 +41,7 @@ window.taggly = {
     	$.get("https://taggly.parseapp.com/api/video-comments/"+pageurl+'?'+date.timeStamp, function(data, status){
     		if(status == 'success'){
 	        	console.log(data);
-		        taggly.body.html(data);
+		      taggly.body.html(data);
 		    } 
 	    });
     },

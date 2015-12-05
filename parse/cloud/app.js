@@ -59,6 +59,7 @@ app.get('/api/video-comments/:videoUrl?', function(req, res) {
       var commentObject = {
         id: results[i].id,
         productUrl: productUrl,
+        timestamp: results[i].get('timestamp'),
         description: results[i].get('description'),
         isReply: isReply,
         author: {
@@ -77,7 +78,7 @@ app.get('/api/video-comments/:videoUrl?', function(req, res) {
   }).then(function(commentArray) {
     
     // Render template
-    res.render('video-comments', {comments: commentArray});
+    res.render('video-comments', {comments: commentArray, videoUrl: videoUrl});
     
   });
 
