@@ -19,7 +19,7 @@ window.taggly = {
 			    .appendTo(taggly.container);
 
 		$("<a>").addClass("close")
-			    .text("Close")
+			    .text("+")
 			    .on('click', taggly.close)
 			    .appendTo(taggly.container);
 
@@ -37,7 +37,8 @@ window.taggly = {
     	console.log("[Taggly] taggly.pageview();");
 
     	var pageurl = encodeURIComponent(window.location.href);
-    	$.get("https://taggly.parseapp.com/api/video-comments/"+pageurl, function(data, status){
+    	var date = new Date();
+    	$.get("https://taggly.parseapp.com/api/video-comments/"+pageurl+'?'+date.timeStamp, function(data, status){
     		if(status == 'success'){
 	        	console.log(data);
 		        taggly.body.html(data);

@@ -64,7 +64,7 @@ app.get('/api/video-comments/:videoUrl?', function(req, res) {
         author: {
           id: results[i].get('user').id,
           username: results[i].get('user').get('username'),
-          picture: results[i].get('user').get('picture'),
+          picture: results[i].get('user').get('picture')
         }
       };
       

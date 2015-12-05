@@ -8,7 +8,7 @@
 		margin:0;
 	}
 	
-	.navigation-bar{
+	.tg-navigation-bar{
 		color: #fff;
 		font-size: 18px;
 		padding: 13px 10px;
@@ -20,7 +20,7 @@
 	}
 	
 	/* Comments */
-	.comments{
+	.tg-comments{
 		background: #f6f6f6;
 		max-width: 400px;
 		position: absolute;
@@ -31,41 +31,40 @@
 		overflow: scroll;
 	}
 	
-	.comment{
+	.tg-comment{
 		padding: 20px;
-		//border-top: 1px solid #ddd;
 		box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
 	}
 	
-	.comment:first-child{
+	.tg-comment:first-child{
 		box-shadow: none;
 	}
 	
-	.comment.reply{
+	.tg-comment.reply{
 		border-left: 8px solid #ddd;
 	}
 	
-	.comment header{
+	.tg-comment header{
 		font-size: 14px;
 		color: #777;
 		margin-bottom: 10px;
 	}
 	
-	.comment img{
+	.tg-comment img{
 		display: block;
 		float: left;
 		margin-right: 10px;
 		border-radius: 10px;
 	}
 	
-	.comment .meta-left{
+	.tg-comment .meta-left{
 		display: block;
 		float: left;
 		padding-top: 2px;
 	}
 	
 	/* Product */
-	.product{
+	.tg-product{
 		background: #fff;
 		box-shadow: 0 1px 1px rgba(0,0,0,.2);
 		padding: 10px;
@@ -75,11 +74,11 @@
 		color: #333;
 	}
 	
-	.product:hover{
+	.tg-product:hover{
 		color: #67BCC4;
 	}
 	
-	.product img{
+	.tg-product img{
 		float: left;
 		display: box;
 		margin: 0;
@@ -88,13 +87,13 @@
 		width: 10%;
 	}
 	
-	.product .body{
+	.tg-product .body{
 		margin-left: 5%;
 		float: left;
 		width: 85%;
 	}
 	
-	.product h1{
+	.tg-product h1{
 		font-size: 18px;
 		margin: 0;
 		line-height: 1.2em;
@@ -109,6 +108,7 @@
 	
 	footer a{
 		color: #777;
+		text-decoration: underline;
 	}
 	
 	footer a:hover{
@@ -127,13 +127,13 @@
 	}
 </style>
 
-<header class="navigation-bar">Taggly</header>
+<header class="tg-navigation-bar">Taggly</header>
 
-<div class="comments">
+<div class="tg-comments">
 	
 	<% for(var i=0; i<comments.length; i++) { %>
 	
-	<div class="comment<% if(comments[i].isReply){ %> reply<% } %>">
+	<div class="tg-comment<% if(comments[i].isReply){ %> reply<% } %>">
 		<header class="cf">
 			<img src="<%= comments[i].author.picture %>" alt="<%= comments[i].author.username %>" width="20"/>
 			<span class="meta-left"><%= comments[i].author.username %> – 15 minutes ago</span>
@@ -142,7 +142,7 @@
 		<p><%= comments[i].description %></p>
 		
 		<% if(comments[i].productUrl){ %>
-		<a href="<%= comments[i].productUrl %>" target="_blank" class="product cf">
+		<a href="<%= comments[i].productUrl %>" target="_blank" class="tg-product cf">
 			<img src="http://ecx.images-amazon.com/images/I/51GBh3qOJDL._SL1004_.jpg" width="50"/>
 			<div class="body">
 				<h1>Clone Trooper Captain Rex Star WarsTM costume for boy - Age 8-10 Years - Large<h1>
@@ -151,7 +151,8 @@
 		<% } %>
 		
 		<footer>
-			<a href="">5 Upvotes</a>	– <a href="">Reply</a>
+			<% if(comments[i].isReply){ %><a href="">5 Upvotes</a><% } %>
+			<% if(!comments[i].isReply){ %><a href="">Reply</a><% } %>
 		</footer>
 	</div>
 	<% } %>

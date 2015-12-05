@@ -3,11 +3,12 @@
 	right: 0;
 	top: 50px;
 	bottom:0;
-	width: 300px;
+	width: 400px;
 	background: #E4534D;
 	z-index: 9000;
-	right:-300px;
+	right:-400px;
 	transition: .3s right;
+	/*box-shadow: 0 0 10px 0 rgba(0,0,0,0.75);*/
 }
 
 .taggly.open {
@@ -16,14 +17,20 @@
 
 .taggly a.close {
 	display: block;
-	margin: 10px auto;
-	text-align: center;
-	color: #FFF;
+	width: 20px;
+	height: 20px;
+	color: #fff;
+	font-size: 30px;
+	transform: rotate(45deg);
 	position: absolute;
-	text-align: right;
-	padding: 9px 10px;
-	z-index: 199;
-	right: 0;
+	right: 5px;
+	top: 5px;
+	z-index:199;
+	text-align: center;
+}
+
+.taggly a.close:hover{
+	text-decoration: none;
 }
 
 .taggly a.close {
@@ -35,14 +42,18 @@
 	left: -99px;
 	position: absolute;
 	display: block;
-	background:#67BCC4;
-	width: 59px;
+	background:none;
+	width: 54px;
 	text-align:center;
 	display: block;
 	color: #fff;
 	text-decoration: none;
 	margin: 10px;
 	border-radius: 5px;
+	letter-spacing: 1px;
+	font-size: 16px;
+	color:#fff;
+	background: #E4534D;
 }
 
 .taggly.open a.close {
@@ -51,8 +62,6 @@
 .taggly.open a.start {
 	display: none;
 }
-
-
 
 .taggly .body {
 	display: none;
