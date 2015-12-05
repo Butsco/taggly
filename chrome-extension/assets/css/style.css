@@ -1,0 +1,42 @@
+.taggly {
+	position: fixed;
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: 50px;
+	background: red;
+	z-index: 9000;
+}
+.taggly.open {
+	width: 300px;
+}
+
+.taggly a.start,
+.taggly a.close {
+	display: block;
+	margin: 70px auto;
+	text-align: center;
+	color: #FFF;
+}
+
+.taggly a.close {
+	display: none;
+}
+.taggly a.start {
+	display: block;
+}
+.taggly.open a.close {
+	display: block;
+}
+.taggly.open a.start {
+	display: none;
+}
+
+
+
+.taggly .body {
+	display: none;
+}
+.taggly.open .body {
+	display: block;
+}
