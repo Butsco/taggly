@@ -11,7 +11,7 @@ window.taggly = {
     	console.log("[Taggly] taggly.init();");
 
     	taggly.container = $("<div>").addClass("taggly");
-		taggly.container.appendTo(document.body);
+        taggly.container.appendTo(document.body);
 
 		$("<a>").addClass("start")
 			    .text("Taggly")
@@ -38,7 +38,7 @@ window.taggly = {
 
         var pageurl = window.location.href;
 
-        if(window.location.hostname.indexOf("youtube") > -1){
+        if(window.location.hostname.indexOf("youtube") > -1 && window.location.search.indexOf("v=") > -1){
             var video_id = window.location.search.split('v=')[1];
             var ampersandPosition = video_id.indexOf('&');
             if(ampersandPosition != -1) {
@@ -54,6 +54,8 @@ window.taggly = {
 		        taggly.body.html(data);
 		    } 
 	    });
+
+
     },
 
     /*
@@ -63,6 +65,9 @@ window.taggly = {
     	console.log("[Taggly] taggly.open();");
 
     	e.preventDefault();
+
+        // Pause Video
+        document.getElementsByTagName('video')[0].pause();
 
     	// Open
     	taggly.open = true;
@@ -77,6 +82,9 @@ window.taggly = {
     	console.log("[Taggly] taggly.close();");
 
     	e.preventDefault();
+
+        // Play Video
+        document.getElementsByTagName('video')[0].play();
 
     	// Change Taggly status
     	taggly.open = false;
