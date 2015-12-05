@@ -1,39 +1,49 @@
 Parse.Cloud.afterSave("Product", function(request) {
 
-    query = new Parse.Query("Product");
-    query.get(request.object.id, {
-        success: function(product) {
+    var date1 = new Date();
+    var date2 = new Date(request.object.updatedAt);
+    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
 
+    if(timeDiff > (20*1)){
 
-            var url = "http://www.ebay.com/itm/Microsoft-Surface-Pro-3-12-Tablet-256GB-SSD-Intel-Core-i7-Haswell-8GB-RAM-/281656969697";
+        query = new Parse.Query("Product");
+        query.get(request.object.id, {
+            success: function(product) {
+  
+                console.log(product.get('productUrl'));
 
-            $.getJSON("//query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20html%20WHERE%20url=%27" + encodeURIComponent(url) + "%27%20AND%20xpath=%27descendant-or-self::meta%27&format=json&callback=?", function(data) {
-                console.log(data);
-              // filter returned `results.meta` array for
-              // object having property `property`:`og:*` `meta` elements ;
-              // and has `property` `og:image` 
-              var res = $.grep(data.query.results.meta, function(image, key) {
-                return image.hasOwnProperty("property") && image.property === "og:image"
-              });
-              // if object having property `og:image` returned , do stuff
-              if (res.length > 0) {
-                console.log(res[0].property);
-                $("body").append(res[0].content);
-              } else {
-                // else, log notification
-                console.log("og:image not found")
-              };
+                Parse.Cloud.httpRequest({
+                    url: "https://graph.facebook.com",
+                    method: 'POST',
+                    headers:{
+                        'Content-Type': 'application/json',
+                    },
+                    body: {
+                        'id': product.get('productUrl'),
+                        'scrape': true
+                    },
+                    success: function (httpResponse) {
+                        console.log(httpResponse);
 
-});
-
-
-
-
-            product.set("title", "TEST");
-            product.save();
-        },
-        error: function(error) {
-            console.error("Got an error " + error.code + " : " + error.message);
-        }
-    });
+                        product.set("title", httpResponse.data.title);
+                        product.set("description", httpResponse.data.description);
+                        product.set("sitename", httpResponse.data.site_name);
+                        product.set("type", httpResponse.data.type);
+                        product.set("imageUrl", httpResponse.data.image[0].url);
+                        product.save();
+                    },
+                    error:function (httpResponse) {
+                        console.error('Request failed with response code ' + httpResponse.status);
+                    }
+                });
+               
+            },
+            error: function(error) {
+                console.error("Got an error " + error.code + " : " + error.message);
+            }
+        });
+        
+    }else{
+        console.log("Already updated "+timeDiff+"s ago.");
+    }
 });
