@@ -1,0 +1,59 @@
+<style>
+	body{
+		margin:0;
+		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	}
+	.comments{
+		background: #f6f6f6;
+	}
+	
+	.comment{
+		padding: 10px;
+		border-top: 1px solid #ddd;
+	}
+	
+	.comment header{
+		font-size: 14px;
+		color: #777;
+	}
+	
+	.comment img{
+		display: block;
+		float: left;
+		margin-right: 10px;
+		border-radius: 10px;
+	}
+	.comment .meta-left{
+		display: block;
+		float: left;
+		padding-top: 2px;
+	}
+	
+	/* Clearfix */
+	.cf:before,
+	.cf:after {
+			content: " ";
+			display: table;
+	}
+	
+	.cf:after {
+			clear: both;
+	}
+</style>
+
+<div class="comments">
+	<% for(var i=0; i<comments.length; i++) { %>
+	<div class="comment">
+		<header class="cf">
+			<img src="<%= comments[i].author.picture %>" alt="<%= comments[i].author.username %>" width="20"/>
+			<span class="meta-left"><%= comments[i].author.username %> – 15 minutes ago</span>
+		</header>
+		
+		<p><%= comments[i].description %></p>
+		
+		<div class="product">
+			<a href="<%= comments[i].productUrl %>" onclick="alert(window.taggly.currentTime()); return false;"><%= comments[i].productUrl %></a>
+		</div>
+	</div>
+	<% } %>
+</div>
