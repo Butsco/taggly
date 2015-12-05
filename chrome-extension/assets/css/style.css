@@ -1,31 +1,50 @@
 .taggly {
 	position: fixed;
 	right: 0;
-	top: 0;
-	height: 100%;
-	width: 50px;
+	top: 50px;
+	bottom:0;
+	width: 300px;
 	background: #E4534D;
 	z-index: 9000;
-	overflow: scroll;
-}
-.taggly.open {
-	width: 300px;
+	right:-300px;
+	transition: .3s right;
 }
 
-.taggly a.start,
+.taggly.open {
+	right:0;
+}
+
 .taggly a.close {
 	display: block;
-	margin: 70px auto;
+	margin: 10px auto;
 	text-align: center;
 	color: #FFF;
+	position: absolute;
+	text-align: right;
+	padding: 9px 10px;
+	z-index: 199;
+	right: 0;
 }
 
 .taggly a.close {
 	display: none;
 }
+
 .taggly a.start {
+	padding: 10px;
+	left: -99px;
+	position: absolute;
 	display: block;
+	background:#67BCC4;
+	width: 59px;
+	text-align:center;
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	margin: 10px;
+	border-radius: 5px;
 }
+
 .taggly.open a.close {
 	display: block;
 }
@@ -38,6 +57,8 @@
 .taggly .body {
 	display: none;
 	position: relative;
+	z-index: 99;
+	height: 100%;
 }
 .taggly.open .body {
 	display: block;

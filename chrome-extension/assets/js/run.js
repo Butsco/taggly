@@ -14,7 +14,7 @@ window.taggly = {
 		taggly.container.appendTo(document.body);
 
 		$("<a>").addClass("start")
-			    .text("Open")
+			    .text("Taggly")
 			    .on('click', taggly.open)
 			    .appendTo(taggly.container);
 
@@ -55,8 +55,8 @@ window.taggly = {
 
     	// Open
     	taggly.open = true;
-    	$('body').animate({'margin-right':"300px"});
-    	taggly.container.animate({'width':"300px"}).addClass('open');
+    	//$('body').animate({'margin-right':"300px"});
+    	taggly.container.addClass('open');
     },
 
     /*
@@ -69,8 +69,8 @@ window.taggly = {
 
     	// Change Taggly status
     	taggly.open = false;
-    	$('body').animate({'margin-right':"0"});
-    	taggly.container.animate({'width':"50px"}).removeClass('open');
+    	//$('body').animate({'margin-right':"0"});
+    	taggly.container.removeClass('open');
     },
 
     /*
