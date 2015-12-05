@@ -1,30 +1,61 @@
 .taggly {
 	position: fixed;
 	right: 0;
-	top: 0;
-	height: 100%;
-	width: 50px;
-	background: red;
+	top: 50px;
+	bottom:0;
+	width: 400px;
+	background: #E4534D;
 	z-index: 9000;
-}
-.taggly.open {
-	width: 300px;
+	right:-400px;
+	transition: .3s right;
+	/*box-shadow: 0 0 10px 0 rgba(0,0,0,0.75);*/
 }
 
-.taggly a.start,
+.taggly.open {
+	right:0;
+}
+
 .taggly a.close {
 	display: block;
-	margin: 70px auto;
+	width: 20px;
+	height: 20px;
+	color: #fff;
+	font-size: 30px;
+	transform: rotate(45deg);
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	z-index:199;
 	text-align: center;
-	color: #FFF;
+}
+
+.taggly a.close:hover{
+	text-decoration: none;
 }
 
 .taggly a.close {
 	display: none;
 }
+
 .taggly a.start {
+	padding: 10px;
+	left: -99px;
+	position: absolute;
 	display: block;
+	background:none;
+	width: 54px;
+	text-align:center;
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	margin: 10px;
+	border-radius: 5px;
+	letter-spacing: 1px;
+	font-size: 16px;
+	color:#fff;
+	background: #E4534D;
 }
+
 .taggly.open a.close {
 	display: block;
 }
@@ -32,10 +63,11 @@
 	display: none;
 }
 
-
-
 .taggly .body {
 	display: none;
+	position: relative;
+	z-index: 99;
+	height: 100%;
 }
 .taggly.open .body {
 	display: block;
