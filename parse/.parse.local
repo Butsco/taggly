@@ -1,0 +1,13 @@
+{
+  "applications": {
+    "Taggly": {
+      "applicationId": "HTOmQnRlJyq2b7MMaMI8R7yKzxmmiWbqZ4XuIkJB"
+    },
+    "Taggly-TC": {
+      "applicationId": "HTOmQnRlJyq2b7MMaMI8R7yKzxmmiWbqZ4XuIkJB"
+    },
+    "_default": {
+      "link": "Taggly"
+    }
+  }
+}
