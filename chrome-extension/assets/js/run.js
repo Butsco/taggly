@@ -1,6 +1,7 @@
 window.taggly = {
 	open: false,
 	container: undefined,
+    overlay: undefined,
 	body: undefined,
 
     /*
@@ -12,6 +13,10 @@ window.taggly = {
 
     	taggly.container = $("<div>").addClass("taggly");
         taggly.container.appendTo(document.body);
+
+        taggly.overlay = $("<div>").addClass("taggly-overlay");
+        taggly.overlay.appendTo(document.body);
+
 
 		$("<a>").addClass("start")
 			    .text("Taggly")
@@ -25,6 +30,7 @@ window.taggly = {
 
 		taggly.body = $("<div>").addClass("body");
 		taggly.body.appendTo(taggly.container);
+
 
 		// Send pageview
 		taggly.pageview();

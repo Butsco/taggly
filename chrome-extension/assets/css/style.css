@@ -5,10 +5,21 @@
 	bottom:0;
 	width: 400px;
 	background: #E4534D;
-	z-index: 9000;
+	z-index: 2019999999;
 	right:-400px;
 	transition: .3s right;
 	/*box-shadow: 0 0 10px 0 rgba(0,0,0,0.75);*/
+}
+
+.taggly-overlay {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(0,0,0,0.8);
+	z-index: 2009999999;
 }
 
 .taggly.open {
