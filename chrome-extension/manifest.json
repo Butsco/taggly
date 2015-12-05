@@ -1,0 +1,18 @@
+{
+    "name": "Taggly",
+    "description": "With Taggly you discuss your favorite products found in videos by tagging them and providing a one-click buy link.",
+    "version": "1.0",
+    "permissions": [
+        "activeTab"
+    ],
+    "content_scripts" : [{
+        "matches" : [ "*://www.youtube.com/*"],
+        "css" : ["assets/css/style.css"],
+        "js" : ["assets/js/jquery-2.1.4.min.js","assets/js/run.js"]
+    }],
+    "permissions": [
+        "*://www.youtube.com/*",
+        "*://taggly.parseapp.com/*"
+    ],
+    "manifest_version": 2
+}
