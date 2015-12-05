@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Add a comment</title>
+	</head>
+	
+	<style>
+		label{
+			display: block;
+		}
+		.input{
+			margin-bottom: 10px;
+		}
+	</style>
+	
+	<body>
+		<h1>Add a comment</h1>
+			
+		<form action="" method="post">
+			<div class="input text">
+				<label>videoUrl (Optional)</label>
+				<input type="text" value="https://www.youtube.com/watch?v=sGbxmsDFVnE" placeholder="videoUrl"/>
+			</div>
+			<div class="input text">
+				<label>description</label>
+				<input type="text" value="What item is this?" placeholder="videoUrl"/>
+			</div>
+			<div class="input text">
+				<label>parentComment (Optional)</label>
+				<input type="text" value="" placeholder="parentComment"/>
+			</div>
+			<div class="input text">
+				<label>user</label>
+				<input type="text" value="" placeholder="user"/>
+			</div>
+			<div class="input text">
+				<label>timestamp</label>
+				<input type="text" value="9" placeholder="timestamp"/>
+			</div>
+			<div class="input text">
+				<label>tagCoordinates (Optional)</label>
+				<input type="text" value='{"x":0, "y":0, "width":10, "height":10}' placeholder="tagCoordinates"/>
+			</div>
+			<div class="input text">
+				<label>upvotes</label>
+				<input type="text" value="0" placeholder="upvotes"/>
+			</div>
+			<div class="input text">
+				<label>downvotes</label>
+				<input type="text" value="0" placeholder="downvotes"/>
+			</div>
+			<div class="input text">
+				<label>product (Optional)</label>
+				<input type="text" value="" placeholder="product"/>
+			</div>
+			
+			<input type="submit" value="Add comment"/>
+		</form>
+	</body>
+</html>
