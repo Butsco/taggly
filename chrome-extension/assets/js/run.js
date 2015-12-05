@@ -36,9 +36,19 @@ window.taggly = {
     pageview: function(){
     	console.log("[Taggly] taggly.pageview();");
 
-    	var pageurl = encodeURIComponent(window.location.href);
+        var pageurl = window.location.href;
+
+        if(window.location.hostname.indexOf("youtube") > -1){
+            var video_id = window.location.search.split('v=')[1];
+            var ampersandPosition = video_id.indexOf('&');
+            if(ampersandPosition != -1) {
+                video_id = video_id.substring(0, ampersandPosition);
+                pageurl = "https://www.youtube.com/watch?v="+video_id;
+            }
+        }
+        
     	var date = new Date();
-    	$.get("https://taggly.parseapp.com/api/video-comments/"+pageurl+'?'+date.timeStamp, function(data, status){
+    	$.get("https://taggly.parseapp.com/api/video-comments/"+encodeURIComponent(pageurl)+'?'+date.timeStamp, function(data, status){
     		if(status == 'success'){
 	        	console.log(data);
 		        taggly.body.html(data);
@@ -74,14 +84,6 @@ window.taggly = {
     	taggly.container.removeClass('open');
     },
 
-    /*
-     * Pause video
-     */
-    pauseVideo: function(){
-    	console.log("[Taggly] taggly.pauseVideo();");
-    	var video = $('video').get(0);
-    	return video.pause();
-    }
 } 
 
 

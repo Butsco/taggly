@@ -1,5 +1,6 @@
 {
     "name": "Taggly",
+    "author":  "Butsco - Tom Claus & Kristof Houben",
     "description": "With Taggly you discuss your favorite products found in videos by tagging them and providing a one-click buy link.",
     "version": "1.0",
     "permissions": [
@@ -18,5 +19,9 @@
         "*://www.youtube.com/*",
         "*://taggly.parseapp.com/*"
     ],
+    "icons": { 
+        "48": "assets/img/48.png",
+        "128": "assets/img/128.png" 
+    },
     "manifest_version": 2
 }
