@@ -50,11 +50,17 @@ app.get('/api/video-comments/:videoUrl?', function(req, res) {
         productUrl = results[i].get('product').get('productUrl');
       }
       
+      var isReply = false;
+      if(results[i].get('parentComment')){
+        isReply = true;
+      }
+      
       // Create the comment
       var commentObject = {
         id: results[i].id,
         productUrl: productUrl,
         description: results[i].get('description'),
+        isReply: isReply,
         author: {
           id: results[i].get('user').id,
           username: results[i].get('user').get('username'),

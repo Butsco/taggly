@@ -4,8 +4,9 @@
 	top: 0;
 	height: 100%;
 	width: 50px;
-	background: red;
+	background: #E4534D;
 	z-index: 9000;
+	overflow: scroll;
 }
 .taggly.open {
 	width: 300px;
@@ -36,6 +37,7 @@
 
 .taggly .body {
 	display: none;
+	position: relative;
 }
 .taggly.open .body {
 	display: block;
