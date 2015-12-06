@@ -98,19 +98,20 @@
 		margin: 0;
 		margin-right: 0;
 		border-radius: 0;
-		width: 10%;
+		width: 20%;
 	}
 	
-	.tg-product .body{
+	.tg-product .tg-body{
 		margin-left: 5%;
 		float: left;
-		width: 85%;
+		width: 75%;
 	}
 	
 	.tg-product h1{
 		font-size: 18px;
 		margin: 0;
 		line-height: 1.2em;
+		background: #fff;
 	}
 	
 	/* Footer */
@@ -249,10 +250,21 @@
 	
 	<div class="tg-comments">
 		
-		<% if(!videos.length) { %>
+		<% if(!videoArray.length) { %>
 			<span class="tg-empty-state">No videos.</span>
 		<% } %>
 		
+		
+		<% for(var i=0; i<videoArray.length; i++) { %>
+		<div class="tg-comment">			
+			<a href="<%= videoArray[i].videoUrl %>&amp;t=<%= videoArray[i].timestamp %>" target="_blank" class="tg-product cf">
+				<img src="<%= videoArray[i].image %>" width="50"/>
+				<div class="tg-body">
+					<h1>Watch on youtube</h1>
+				</div>
+			</a>
+		</div>
+		<% } %>
 		
 	</div>
 	

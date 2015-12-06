@@ -90,44 +90,81 @@ app.get('/api/video-comments/:videoUrl?', function(req, res) {
 
 // Get ecommmerce for product
 // https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DsGbxmsDFVnE
-app.get('/api/ecommerce/:videoUrl?', function(req, res) {
+app.get('/api/ecommerce/:productUrl?', function(req, res) {
 
   // Parameters
-  var videoUrl = req.param('videoUrl');
-  videoUrl = decodeURIComponent(videoUrl);
-
-  console.log('OK');
-  console.log(videoUrl);
+  var productUrl = req.param('productUrl');
+  productUrl = decodeURIComponent(productUrl);
+  
+  console.log(productUrl);
   
   // Get root comments
-  var query = new Parse.Query('Product');
-  query.equalTo('productUrl', videoUrl);
-  /*
-  // Get reply comments
-  var commentQuery = new Parse.Query('Comment');
-  commentQuery.matchesQuery('product', productQuery);
-  
-  // Create compound query
-  var query = Parse.Query.or(commentQuery, commentQuery);*/
-  query.include('user');
-  query.include('product');
-  query.ascending('createdAt');
-  
+  var productQuery = new Parse.Query('Product');
+  productQuery.equalTo('productUrl', productUrl);
+ 
+ 
   // Execute the query
-  query.find().then(function(results) {
-
-    console.log(results);
-
-    var videoArray = [];
-
-    return videoArray;
+  productQuery.first().then(function(object) {
     
-  }).then(function(videoArray) {
+    console.log('ID: ' + object.id);
     
-    // Render template
-    res.render('product-videos', {videos: videoArray, videoUrl: videoUrl});
+    if(object){
+      // Get reply comments
+      var commentQuery = new Parse.Query('Comment');
+      commentQuery.equalTo('product', object);
+      commentQuery.include('parentComment');
+      
+      // Execute the query
+      commentQuery.find().then(function(results) {
+      
+        console.log('LENGTH:' + results.length);
+      
+        var videoArray = [];
+        
+        //https://www.youtube.com/watch?v=
+        //http://img.youtube.com/vi/<insert-youtube-video-id-here>/default.jpg
+        
+        for(var i=0; i<results.length; i++){
+          console.log('URL:'+ results[i].get('parentComment').get('videoUrl'));
+          
+          var image = undefined; 
+          
+          var url = results[i].get('parentComment').get('videoUrl'); 
+          var video_id = url.split('v=')[1];
+          
+          
+          var ampersandPosition = video_id.indexOf('&');
+          if(ampersandPosition != -1) {
+            video_id = video_id.substring(0, ampersandPosition);
+          }
+          
+          image = 'https://img.youtube.com/vi/' + video_id + '/default.jpg';
+          
+          console.log('IMG: '+ image);
+          
+          var videoObject = {
+            videoUrl: results[i].get('parentComment').get('videoUrl'),
+            timestamp: results[i].get('parentComment').get('timestamp'),
+            image: image
+          };
+          
+          videoArray.push(videoObject);
+        }
+      
+        return videoArray;
+        
+      }).then(function(videoArray) {
+        
+        console.log(videoArray.length);
+        
+        // Render template
+        res.render('product-videos', {videoArray: videoArray, productUrl: productUrl});
+        
+      });
+      
+    }
     
-  });
+  })
 
 });
 
