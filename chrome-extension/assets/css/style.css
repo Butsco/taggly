@@ -32,6 +32,7 @@
 	top: 5px;
 	z-index:199;
 	text-align: center;
+	cursor: pointer;
 }
 
 .taggly a.close:hover{
@@ -59,6 +60,7 @@
 	font-size: 16px;
 	color:#fff;
 	background: #E4534D;
+	cursor: pointer;
 }
 
 .taggly.open a.close {

@@ -31,7 +31,6 @@ window.taggly = {
 		taggly.body = $("<div>").addClass("body");
 		taggly.body.appendTo(taggly.container);
 
-
 		// Send pageview
 		taggly.pageview();
     },
@@ -43,6 +42,7 @@ window.taggly = {
     	console.log("[Taggly] taggly.pageview();");
 
         var pageurl = window.location.href;
+        var type = "video";
 
         if(window.location.hostname.indexOf("youtube") > -1 && window.location.search.indexOf("v=") > -1){
             var video_id = window.location.search.split('v=')[1];
@@ -53,8 +53,12 @@ window.taggly = {
             }
         }
         
+        if(window.location.hostname.indexOf("zalando") > -1){
+            type = "ecommerce";
+        }
+        
     	var date = new Date();
-    	$.get("https://taggly.parseapp.com/api/video-comments/"+encodeURIComponent(pageurl)+'?'+date.timeStamp, function(data, status){
+    	$.get("https://taggly.parseapp.com/api/video-comments/"+encodeURIComponent(pageurl)+'?'+date.getTime()+"&type="+type, function(data, status){
     		if(status == 'success'){
 	        	console.log(data);
 		      taggly.body.html(data);
