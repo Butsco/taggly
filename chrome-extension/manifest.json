@@ -7,7 +7,7 @@
         "activeTab"
     ],
     "content_scripts" : [{
-        "matches" : [ "*://www.youtube.com/*", "*://www.zalando.be/*", "*://www.zalando.com/*"],
+        "matches" : [ "*://www.youtube.com/*", "*://www.zalando.be/*", "*://www.zalando.com/*", "*://www.zalando.co.uk/*"],
         "css" : ["assets/css/style.css"],
         "js" : ["assets/js/jquery-2.1.4.min.js", "assets/js/run.js"]
     }],
