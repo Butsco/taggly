@@ -257,7 +257,7 @@
 		<div class="tg-comment<% if(comments[i].isReply){ %> reply<% } %>">
 			<header class="cf">
 				<img src="<%= comments[i].author.picture %>" alt="<%= comments[i].author.username %>" width="20"/>
-				<span class="meta-left"><%= comments[i].author.username %> – <a href="" onclick="document.getElementsByTagName('video')[0].currentTime = <%= comments[i].timestamp %>; document.getElementsByTagName('video')[0].pause; return false;">Go to frame</a></span>
+				<span class="meta-left"><%= comments[i].author.username %> – <a href="" onclick="document.getElementsByTagName('video')[0].currentTime = <%= comments[i].timestamp %>; document.getElementsByTagName('video')[0].pause(); return false;">Go to frame</a></span>
 			</header>
 			
 			<% if(comments[i].description){%><p><%= comments[i].description %></p><% } %>
