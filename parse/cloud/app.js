@@ -123,7 +123,6 @@ app.get('/api/ecommerce/:productUrl?', function(req, res) {
         //http://img.youtube.com/vi/<insert-youtube-video-id-here>/default.jpg
         
         for(var i=0; i<results.length; i++){
-          console.log('URL:'+ results[i].get('parentComment').get('videoUrl'));
           
           var image = undefined; 
           
@@ -138,11 +137,10 @@ app.get('/api/ecommerce/:productUrl?', function(req, res) {
           
           image = 'https://img.youtube.com/vi/' + video_id + '/default.jpg';
           
-          console.log('IMG: '+ image);
-          
           var videoObject = {
             videoUrl: results[i].get('parentComment').get('videoUrl'),
             timestamp: results[i].get('parentComment').get('timestamp'),
+            videoTitle: results[i].get('parentComment').get('videoTitle'),
             image: image
           };
           

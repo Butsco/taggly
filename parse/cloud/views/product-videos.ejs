@@ -258,13 +258,12 @@
 			<span class="tg-empty-state">No videos.</span>
 		<% } %>
 		
-		
 		<% for(var i=0; i<videoArray.length; i++) { %>
 		<div class="tg-comment">			
 			<a href="<%= videoArray[i].videoUrl %>&amp;t=<%= parseInt(videoArray[i].timestamp) %>" target="_blank" class="tg-product cf">
 				<img src="<%= videoArray[i].image %>" width="50"/>
 				<div class="tg-body">
-					<h1>Watch on youtube</h1>
+					<h1><%= videoArray[i].videoTitle %></h1>
 				</div>
 			</a>
 		</div>

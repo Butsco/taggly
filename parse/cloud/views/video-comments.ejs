@@ -185,6 +185,10 @@
 		cursor: pointer;
 	}
 	
+	.tg-add-comment .submit input:disabled{
+		background: #ccc;
+	}
+	
 	.tg-add-comment .submit input:hover{
 		background:#67BCC4;
 	}
@@ -392,6 +396,7 @@
 		// ADD COMMENT
 		
 		$('.tg-add-comment .submit input').on('click', function(){
+			$(this).attr('disabled', true);
 			var commentText = $('.tg-add-comment .text input').val();
 			var user = '5gD3luXcQ9';
 			var videoUrl = '<%= videoUrl %>';
@@ -427,6 +432,7 @@
 						if(status == 'success'){
 							console.log(data);
 							$('.taggly .body').html(data);
+							$(this).attr('disabled', false);
 						} 
 					});
 				},
