@@ -49,8 +49,8 @@ window.taggly = {
             var ampersandPosition = video_id.indexOf('&');
             if(ampersandPosition != -1) {
                 video_id = video_id.substring(0, ampersandPosition);
-                pageurl = "https://www.youtube.com/watch?v="+video_id;
             }
+            pageurl = "https://www.youtube.com/watch?v="+video_id;
         }
         
         if(window.location.hostname.indexOf("zalando") > -1){
