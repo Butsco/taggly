@@ -6,9 +6,9 @@
 	width: 400px;
 	background: #E4534D;
 	z-index: 2019999999;
-	right:-400px;
+	right:-410px;
 	transition: .3s right;
-	/*box-shadow: 0 0 10px 0 rgba(0,0,0,0.75);*/
+	box-shadow: 0 0 15px 0 rgba(0,0,0,0.50);
 	font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
@@ -46,7 +46,7 @@
 
 .taggly a.start {
 	padding: 10px;
-	left: -99px;
+	left: -114px;
 	position: absolute;
 	display: block;
 	background:none;
