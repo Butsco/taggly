@@ -15,6 +15,7 @@
         "*://www.youtube.com/*",
         "*://www.zalando.be/*",
         "*://www.zalando.com/*",
+        "*://www.zalando.co.uk/*",
         "*://taggly.parseapp.com/*"
     ],
     "icons": { 

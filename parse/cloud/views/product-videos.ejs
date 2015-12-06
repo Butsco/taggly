@@ -1,3 +1,6 @@
+<link href='https://fonts.googleapis.com/css?family=Asap' rel='stylesheet' type='text/css'>
+
+
 <style>
 	body{
 		margin:0;
@@ -6,7 +9,7 @@
 	.tg{
 		font-size: 16px;
 		margin:0;
-		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+		font-family: 'Asap', sans-serif;
 	}
 	
 	p{
@@ -258,7 +261,7 @@
 		
 		<% for(var i=0; i<videoArray.length; i++) { %>
 		<div class="tg-comment">			
-			<a href="<%= videoArray[i].videoUrl %>&amp;t=<%= videoArray[i].timestamp %>" target="_blank" class="tg-product cf">
+			<a href="<%= videoArray[i].videoUrl %>&amp;t=<%= parseInt(videoArray[i].timestamp) %>" target="_blank" class="tg-product cf">
 				<img src="<%= videoArray[i].image %>" width="50"/>
 				<div class="tg-body">
 					<h1>Watch on youtube</h1>

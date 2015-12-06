@@ -106,8 +106,6 @@ app.get('/api/ecommerce/:productUrl?', function(req, res) {
   // Execute the query
   productQuery.first().then(function(object) {
     
-    console.log('ID: ' + object.id);
-    
     if(object){
       // Get reply comments
       var commentQuery = new Parse.Query('Comment');
@@ -162,6 +160,9 @@ app.get('/api/ecommerce/:productUrl?', function(req, res) {
         
       });
       
+    }else{
+      // Render template
+      res.render('product-videos', {videoArray: [], productUrl: null});
     }
     
   })
