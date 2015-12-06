@@ -43,22 +43,23 @@ app.get('/api/video-comments/:videoUrl?', function(req, res) {
     var commentArray = [];
     
     for(var i=0; i<results.length; i++){
-      
-      // Check if there is a product linked to this comment
-      var productUrl = null;
-      if(results[i].get('product')){
-        productUrl = results[i].get('product').get('productUrl');
-      }
-      
+
       var isReply = false;
       if(results[i].get('parentComment')){
         isReply = true;
       }
       
+      var product = {};
+      if(results[i].get('product')){
+        product.url = results[i].get('product').get('productUrl');
+        product.title = results[i].get('product').get('title');
+        product.description = results[i].get('product').get('description');
+        product.image = results[i].get('product').get('imageUrl');
+      }
+      
       // Create the comment
       var commentObject = {
         id: results[i].id,
-        productUrl: productUrl,
         timestamp: results[i].get('timestamp'),
         description: results[i].get('description'),
         isReply: isReply,
@@ -66,7 +67,8 @@ app.get('/api/video-comments/:videoUrl?', function(req, res) {
           id: results[i].get('user').id,
           username: results[i].get('user').get('username'),
           picture: results[i].get('user').get('picture')
-        }
+        },
+        product: product
       };
       
       // Push to the comment array
