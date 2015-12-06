@@ -2,7 +2,6 @@ header {
 	width: 100%;
 	font-family: 'Asap', sans-serif;
 	font-size: 16px;
-	text-transform: capitalize;
 }
 
 a {
@@ -74,6 +73,7 @@ a {
 }
 #about h2 {
 	font-family: 'Asap', sans-serif;
+	font-weight: 400; 
 	font-style: oblique;
 	font-size: 20px; 
 	line-height: 170%;
@@ -82,14 +82,19 @@ a {
 	}
 
 #how {
-	background: #eaeaea;
 	font-family: 'Asap', sans-serif;
+	background: url(../img/taggly_sc.png) no-repeat 100% 100% ;
+	background-position: top right; 
+	background-size: 100%; 
 	font-size: 18px;
+	font-weight: 400; 
+	color: #eee;
 	width: 100%;
-	min-height: 200px;
+	max-height: 200px;
 	height: 100%;
 	text-align: center;
 	padding: 20px 0px 50px 0px;
+	display: inline-block;
 }
 
 #demo {
@@ -99,6 +104,13 @@ a {
 	vertical-align: middle;
 	padding: 15px;
 }
+#demo h2 {
+	font-family: 'Asap', sans-serif;
+	font-weight: 700; 
+	line-height: 170%;
+	padding: 10px 30px 10px 30px;
+    margin: 10px 20px 10px 4px;
+	}
 
 #plugin {
 	padding:  10px 0px 10px 10px;
@@ -119,6 +131,7 @@ a {
 footer {
 	background: #333;
 	font-family: 'Asap', sans-serif;
+	color: #FFF;
 	display: inline-block;
 	width: 100%;
 	height: 100%;
@@ -135,6 +148,9 @@ a:footerlink {
 	color: white;
 }
 
+#footer__legal role-element leadstyle-text {
+	color: #FFF;
+}
 
 
 
