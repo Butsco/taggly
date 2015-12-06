@@ -7,12 +7,14 @@
         "activeTab"
     ],
     "content_scripts" : [{
-        "matches" : [ "*://www.youtube.com/*"],
+        "matches" : [ "*://www.youtube.com/*", "*://www.zalando.be/*", "*://www.zalando.com/*"],
         "css" : ["assets/css/style.css"],
         "js" : ["assets/js/jquery-2.1.4.min.js", "assets/js/run.js"]
     }],
     "permissions": [
         "*://www.youtube.com/*",
+        "*://www.zalando.be/*",
+        "*://www.zalando.com/*",
         "*://taggly.parseapp.com/*"
     ],
     "icons": { 

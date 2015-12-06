@@ -1,7 +1,7 @@
 .taggly {
 	position: fixed;
 	right: 0;
-	top: 50px;
+	top: 0px;
 	bottom:0;
 	width: 400px;
 	background: #E4534D;
@@ -9,18 +9,13 @@
 	right:-400px;
 	transition: .3s right;
 	/*box-shadow: 0 0 10px 0 rgba(0,0,0,0.75);*/
+	font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
-.taggly-overlay {
-	display: none;
-	position: fixed;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	background: rgba(0,0,0,0.8);
-	z-index: 2009999999;
-}
+/*
+#player-api.player-api {
+	cursor: copy;
+}*/
 
 .taggly.open {
 	right:0;
@@ -38,6 +33,7 @@
 	top: 5px;
 	z-index:199;
 	text-align: center;
+	cursor: pointer;
 }
 
 .taggly a.close:hover{
@@ -59,12 +55,13 @@
 	display: block;
 	color: #fff;
 	text-decoration: none;
-	margin: 10px;
+	margin: 60px 10px 10px;
 	border-radius: 5px;
 	letter-spacing: 1px;
 	font-size: 16px;
 	color:#fff;
 	background: #E4534D;
+	cursor: pointer;
 }
 
 .taggly.open a.close {

@@ -31,7 +31,6 @@ window.taggly = {
 		taggly.body = $("<div>").addClass("body");
 		taggly.body.appendTo(taggly.container);
 
-
 		// Send pageview
 		taggly.pageview();
     },
@@ -43,6 +42,7 @@ window.taggly = {
     	console.log("[Taggly] taggly.pageview();");
 
         var pageurl = window.location.href;
+        var type = "video-comments";
 
         if(window.location.hostname.indexOf("youtube") > -1 && window.location.search.indexOf("v=") > -1){
             var video_id = window.location.search.split('v=')[1];
@@ -53,14 +53,17 @@ window.taggly = {
             }
         }
         
+        if(window.location.hostname.indexOf("zalando") > -1){
+            type = "ecommerce";
+        }
+        
     	var date = new Date();
-    	$.get("https://taggly.parseapp.com/api/video-comments/"+encodeURIComponent(pageurl)+'?'+date.timeStamp, function(data, status){
+    	$.get("https://taggly.parseapp.com/api/"+type+"/"+encodeURIComponent(pageurl)+"?"+date.getTime(), function(data, status){
     		if(status == 'success'){
 	        	console.log(data);
 		      taggly.body.html(data);
 		    } 
 	    });
-
 
     },
 
@@ -73,12 +76,13 @@ window.taggly = {
     	e.preventDefault();
 
         // Pause Video
-        document.getElementsByTagName('video')[0].pause();
+        if(document.getElementsByTagName('video').length > 0){
+            document.getElementsByTagName('video')[0].pause();
+        }
 
     	// Open
     	taggly.open = true;
-    	//$('body').animate({'margin-right':"300px"});
-    	taggly.container.addClass('open');
+        taggly.container.addClass('open');
     },
 
     /*
@@ -90,11 +94,12 @@ window.taggly = {
     	e.preventDefault();
 
         // Play Video
-        document.getElementsByTagName('video')[0].play();
+        if(document.getElementsByTagName('video').length > 0){
+            document.getElementsByTagName('video')[0].play();
+        } 
 
     	// Change Taggly status
     	taggly.open = false;
-    	//$('body').animate({'margin-right':"0"});
     	taggly.container.removeClass('open');
     },
 
