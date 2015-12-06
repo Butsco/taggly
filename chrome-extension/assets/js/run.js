@@ -42,7 +42,7 @@ window.taggly = {
     	console.log("[Taggly] taggly.pageview();");
 
         var pageurl = window.location.href;
-        var type = "video";
+        var type = "video-comments";
 
         if(window.location.hostname.indexOf("youtube") > -1 && window.location.search.indexOf("v=") > -1){
             var video_id = window.location.search.split('v=')[1];
@@ -58,7 +58,7 @@ window.taggly = {
         }
         
     	var date = new Date();
-    	$.get("https://taggly.parseapp.com/api/video-comments/"+encodeURIComponent(pageurl)+'?'+date.getTime()+"&type="+type, function(data, status){
+    	$.get("https://taggly.parseapp.com/api/"+type+"/"+encodeURIComponent(pageurl)+"?"+date.getTime(), function(data, status){
     		if(status == 'success'){
 	        	console.log(data);
 		      taggly.body.html(data);
