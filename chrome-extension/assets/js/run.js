@@ -61,7 +61,6 @@ window.taggly = {
 		    } 
 	    });
 
-
     },
 
     /*
@@ -73,12 +72,13 @@ window.taggly = {
     	e.preventDefault();
 
         // Pause Video
-        document.getElementsByTagName('video')[0].pause();
+        if(document.getElementsByTagName('video').length > 0){
+            document.getElementsByTagName('video')[0].pause();
+        }
 
     	// Open
     	taggly.open = true;
-    	//$('body').animate({'margin-right':"300px"});
-    	taggly.container.addClass('open');
+        taggly.container.addClass('open');
     },
 
     /*
@@ -90,11 +90,12 @@ window.taggly = {
     	e.preventDefault();
 
         // Play Video
-        document.getElementsByTagName('video')[0].play();
+        if(document.getElementsByTagName('video').length > 0){
+            document.getElementsByTagName('video')[0].play();
+        } 
 
     	// Change Taggly status
     	taggly.open = false;
-    	//$('body').animate({'margin-right':"0"});
     	taggly.container.removeClass('open');
     },
 
