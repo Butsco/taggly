@@ -1,0 +1,259 @@
+<style>
+	body{
+		margin:0;
+	}
+	
+	.tg{
+		font-size: 16px;
+		margin:0;
+		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	}
+	
+	p{
+		margin:0;
+	}
+	
+	.tg-navigation-bar{
+		color: #fff;
+		font-size: 18px;
+		padding: 13px 10px;
+		background: #E4534D;
+		text-align: center;
+		max-width: 380px;
+		letter-spacing: 1px;
+		font-weight: 300;
+	}
+	
+	/* Comments */
+	.tg-comments{
+		background: #f6f6f6;
+		max-width: 400px;
+		position: absolute;
+		top: 46px;
+		right: 0;
+		bottom: 38px;
+		left: 0;
+		overflow: scroll;
+	}
+	
+	.tg-comment{
+		padding: 20px;
+		box-shadow: inset 0 1px 0 rgba(0,0,0,0.1);
+	}
+	
+	.tg-comment:first-child{
+		box-shadow: none;
+	}
+	
+	.tg-comment.reply{
+		border-left: 8px solid #ddd;
+	}
+	
+	.tg-comment header{
+		font-size: 14px;
+		color: #777;
+		margin-bottom: 10px;
+	}
+	
+	.tg-comment header a{
+		color: #777;
+		text-decoration: underline;
+	}
+	
+	.tg-comment header a:hover{
+		color: #67BCC4;
+	}
+	
+	.tg-comment img{
+		display: block;
+		float: left;
+		margin-right: 10px;
+		border-radius: 10px;
+	}
+	
+	.tg-comment .meta-left{
+		display: block;
+		float: left;
+		padding-top: 2px;
+	}
+	
+	/* Product */
+	.tg-product{
+		background: #fff;
+		box-shadow: 0 1px 1px rgba(0,0,0,.2);
+		padding: 10px;
+		border-radius: 4px;
+		margin-top: 10px;
+		display: block;
+		color: #333;
+	}
+	
+	.tg-product:hover{
+		color: #67BCC4;
+	}
+	
+	.tg-product img{
+		float: left;
+		display: box;
+		margin: 0;
+		margin-right: 0;
+		border-radius: 0;
+		width: 10%;
+	}
+	
+	.tg-product .body{
+		margin-left: 5%;
+		float: left;
+		width: 85%;
+	}
+	
+	.tg-product h1{
+		font-size: 18px;
+		margin: 0;
+		line-height: 1.2em;
+	}
+	
+	/* Footer */
+	footer{
+		margin-top: 10px;
+		font-size: 14px;
+		color: #777;
+	}
+	
+	footer a{
+		color: #777;
+		text-decoration: underline;
+	}
+	
+	footer a:hover{
+		color: #67BCC4;
+	}
+	
+	.tg-empty-state{
+		text-align: center;
+		padding: 40px 15px;
+		display: block;
+		color: #999;
+	}
+	
+	.tg-add-comment{
+		position: absolute;
+		z-index: 99;
+		max-width: 400px;
+		bottom:0;
+		right:0;
+		left:0;
+		border-top:1px solid #ddd;
+		margin-bottom: 0;
+	}
+	
+	.tg-add-comment .text input{
+		box-sizing: border-box;
+		width: 100%;
+		-webkit-appearance: none;
+		border:none;
+		padding: 10px;
+		font-size: 16px;
+		outline: 0;
+		background: #FFF;
+	}
+	
+	.tg-add-comment .text{
+		width: 85%;
+	}
+	
+	.tg-add-comment .input{
+		float:left;
+	}
+	
+	.tg-add-comment .submit{
+		width: 15%;
+	}
+	
+	.tg-add-comment .submit input{
+		background:#67BCC4;
+		border: none;
+		-webkit-appearance: none;
+		padding: 10px;
+		font-size: 16px;
+		color: #fff;
+		width: 100%;
+		text-align: center;
+		outline: 0;
+	}
+	
+	.tg-add-comment .submit input:hover{
+		background:#67BCC4;
+	}
+	
+	
+	.tg-add-product{
+		z-index: 99;
+		margin-top: 10px;
+		margin-bottom: 0;
+		display: none;
+	}
+	
+	.tg-add-product .text input{
+		box-sizing: border-box;
+		width: 100%;
+		-webkit-appearance: none;
+		border:none;
+		padding: 10px;
+		font-size: 14px;
+		outline: 0;
+	}
+	
+	.tg-add-product .text{
+		width: 75%;
+	}
+	
+	.tg-add-product .input{
+		float:left;
+	}
+	
+	.tg-add-product .submit{
+		width: 25%;
+	}
+	
+	.tg-add-product .submit input{
+		background:#67BCC4;
+		border: none;
+		-webkit-appearance: none;
+		padding: 10px;
+		font-size: 14px;
+		color: #fff;
+		width: 100%;
+		text-align: center;
+		outline: 0;
+	}
+	
+	.tg-add-product .submit input:hover{
+		background:#67BCC4;
+	}
+	
+	/* Clearfix */
+	.cf:before,
+	.cf:after {
+			content: " ";
+			display: table;
+	}
+	
+	.cf:after {
+			clear: both;
+	}
+</style>
+
+<div class="tg">
+	<header class="tg-navigation-bar">Taggly</header>
+	
+	<div class="tg-comments">
+		
+		<% if(!videos.length) { %>
+			<span class="tg-empty-state">No videos.</span>
+		<% } %>
+		
+		
+	</div>
+	
+</div>
